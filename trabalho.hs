@@ -33,11 +33,13 @@ origens ((org, dest, dist, val):r) destinoViagem
     | otherwise = origens r destinoViagem 
 
 cabecalho::String
-cabecalho = "Origem\t\tDestino\t\tDistancia (Km)\t\tValor (R$)\n"
+cabecalho = "Origem\t\t\tDestino\t\t\tDistancia (Km)\tValor (R$)\n"
 
 lViagem :: Trecho->String
 lViagem [] = " "
 lViagem ((orig, dest, dist, val) : tail) = 
     orig ++ "\t\t" ++ dest ++ "\t\t" ++ show dist ++ "\t\t" ++ show val ++ "\n"
     ++ lViagem tail
+
+listaViagem = putStr ((cabecalho ++ lViagem trechoViagem))
 
