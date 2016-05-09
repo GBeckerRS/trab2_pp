@@ -18,6 +18,9 @@ trechoViagem = [("Porto Alegre", "Florianopolis", 376.18, 188.09),
 				("Rio De Janeiro", "São Paulo", 361.15, 180.58)]
 				
 
+--===================================
+-- Questao 1
+
 destino :: Trecho -> Origem -> [(Destino, Distancia,Valor)]
 destino ((org, dest, dist, val):r) origem
     | r == [] && org == origem = [(dest, dist,val)]
@@ -25,12 +28,18 @@ destino ((org, dest, dist, val):r) origem
     | org == origem = (dest, dist,val) : destino r origem
     | otherwise = destino r origem
 
+--===================================
+-- Questao 2
+
 origens :: Trecho -> Destino -> [(Origem, Distancia,Valor)]
 origens ((org, dest, dist, val):r) destinoViagem
     | r == [] && dest == destinoViagem = [(org, dist, val)]
 	| r == [] && dest /= destinoViagem = []
     | dest == destinoViagem = (org, dist,val) : origens r destinoViagem
     | otherwise = origens r destinoViagem 
+
+--===================================
+-- Questao 8
 
 cabecalho::String
 cabecalho = "Origem\t\t\tDestino\t\t\tDistancia (Km)\tValor (R$)\n"
@@ -42,4 +51,6 @@ lViagem ((orig, dest, dist, val) : tail) =
     ++ lViagem tail
 
 listaViagem = putStr ((cabecalho ++ lViagem trechoViagem))
+
+--===================================
 
